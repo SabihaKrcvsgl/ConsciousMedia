@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'pages/login_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(); // Firebase'i başlat
   runApp(const MyApp());
 }
 
@@ -11,10 +13,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Conscious Media',
+      title: 'Conscious_media',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: const LoginPage(),
+      home: const Scaffold(body: Center(child: Text('Firebase Başladı 🚀'))),
     );
   }
 }
