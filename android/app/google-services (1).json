@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "879823004120",
+    "project_id": "consciousmedia-fc7ca",
+    "storage_bucket": "consciousmedia-fc7ca.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879823004120:android:9eb38473c2b9346bdb52ad",
+        "android_client_info": {
+          "package_name": "com.companyname.appname"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuRhEbtCgtRPXDIXCYatn9cYEztbWdU24"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
