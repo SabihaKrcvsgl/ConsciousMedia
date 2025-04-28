@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'home_page.dart'; // Alttaki dosyayı da eklemen lazım
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(); // Firebase'i başlat
-  runApp(const MyApp());
+void main() {
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Conscious_media',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const Scaffold(body: Center(child: Text('Firebase Başladı 🚀'))),
+      title: 'ConsciousMedia',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'Roboto'),
+      home: HomePage(),
     );
   }
 }

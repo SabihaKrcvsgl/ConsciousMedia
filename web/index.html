@@ -1,20 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
+  <!-- Firebase SDK -->
+  <script type="module">
+    // Firebase SDK'ları ve konfigürasyonu
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
+    // Firebase yapılandırması
+    const firebaseConfig = {
+      apiKey: "AIzaSyAJ1AxM_zTBbPXGkQd8rHw2_p_Ku78eha0",  // Firebase projenize ait API key
+      authDomain: "consciousmedia-852f0.firebaseapp.com",  // Firebase projenize ait domain
+      projectId: "Conscious-Media-852F0",  // Firebase projenizin ID'si
+      storageBucket: "consciousmedia-852f0.firebasestorage.app",  // Firebase depolama alanı
+      messagingSenderId: "113505219981",  // Firebase mesajlaşma sender ID
+      appId: "1:113505219981:web:d62903eCE5730E2113F9C4",  // Firebase uygulama ID'si
+      measurementId: "G-JJB9GNHBC0",  // Firebase Analytics ID'si
+    };
 
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+    // Firebase uygulamasını başlat
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
+    const firestore = getFirestore(app);
 
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="$FLUTTER_BASE_HREF">
+    // Kullanıcı girişi işlevi
+    const login = async (email, password) => {
+      try {
+        const userCredential = await auth.signInWithEmailAndPassword(email, password);
+        console.log("Giriş başarılı:", userCredential.user);
+      } catch (error) {
+        console.error("Giriş hatası:", error.message);
+      }
+    };
+
+    // Firestore'a veri ekleme işlevi
+    const addUserData = async (userData) => {
+      try {
+        const docRef = await firestore.collection('users').add(userData);
+        console.log("Veri eklendi:", docRef.id);
+      } catch (error) {
+        console.error("Veri ekleme hatası:", error.message);
+      }
+    };
+  </script>
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -27,12 +59,15 @@
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png" />
 
   <title>conscious_media</title>
   <link rel="manifest" href="manifest.json">
 </head>
+
 <body>
+  <!-- Flutter Web uygulaması için gerekli script -->
   <script src="flutter_bootstrap.js" async></script>
 </body>
+
 </html>
