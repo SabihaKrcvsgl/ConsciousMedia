@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
       backgroundColor: Color.fromARGB(255, 239, 216, 197),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -74,7 +74,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 6),
 
               // Motivasyon
               Center(
@@ -87,7 +87,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 6),
 
               // Kullanım süresi kartı
               _buildCard(
@@ -110,7 +110,7 @@ class HomePage extends StatelessWidget {
                   },
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 6),
 
               // Zaman Yönetimi kartı
               _buildCard(
@@ -126,7 +126,7 @@ class HomePage extends StatelessWidget {
                   },
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 6),
 
               // Faydalı İçerik kartı
               _buildCard(
@@ -147,7 +147,7 @@ class HomePage extends StatelessWidget {
                   },
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 6),
 
               // Zararlı İçerik kartı
               _buildColoredCard(
@@ -161,7 +161,7 @@ class HomePage extends StatelessWidget {
                   );
                 },
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 6),
 
               // Ebeveyn Kontrolü kartı
               _buildColoredCard(
@@ -179,18 +179,18 @@ class HomePage extends StatelessWidget {
               Text(
                 'Sosyal Medya Kullanımı',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF3D6B4E),
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 1),
               Container(
-                height: 200,
-                padding: EdgeInsets.symmetric(vertical: 20),
+                height: 170,
+                padding: EdgeInsets.symmetric(vertical: 5),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.5),
@@ -211,12 +211,15 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
 
               Center(
                 child: Text(
                   '© 2025 ConsciousMedia',
-                  style: TextStyle(color: Colors.grey, fontSize: 12),
+                  style: TextStyle(
+                    color: const Color.fromARGB(255, 139, 138, 138),
+                    fontSize: 14,
+                  ),
                 ),
               ),
             ],
@@ -288,7 +291,6 @@ class HomePage extends StatelessWidget {
   }
 }
 
-// Özellikler sayfası
 // Özellikler sayfası
 class FeaturesPage extends StatelessWidget {
   @override
