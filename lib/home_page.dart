@@ -74,7 +74,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 6),
+              SizedBox(height: 5),
 
               // Motivasyon
               Center(
@@ -87,7 +87,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 6),
+              SizedBox(height: 5),
 
               // Kullanım süresi kartı
               _buildCard(
@@ -110,7 +110,7 @@ class HomePage extends StatelessWidget {
                   },
                 ),
               ),
-              SizedBox(height: 6),
+              SizedBox(height: 5),
 
               // Zaman Yönetimi kartı
               _buildCard(
@@ -126,7 +126,7 @@ class HomePage extends StatelessWidget {
                   },
                 ),
               ),
-              SizedBox(height: 6),
+              SizedBox(height: 5),
 
               // Faydalı İçerik kartı
               _buildCard(
@@ -147,7 +147,7 @@ class HomePage extends StatelessWidget {
                   },
                 ),
               ),
-              SizedBox(height: 6),
+              SizedBox(height: 5),
 
               // Zararlı İçerik kartı
               _buildColoredCard(
@@ -161,7 +161,7 @@ class HomePage extends StatelessWidget {
                   );
                 },
               ),
-              SizedBox(height: 6),
+              SizedBox(height: 5),
 
               // Ebeveyn Kontrolü kartı
               _buildColoredCard(
