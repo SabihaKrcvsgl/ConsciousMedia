@@ -7,21 +7,18 @@ android {
     namespace = "com.sabih.consciousmedia"
     compileSdk = 34
 
-   defaultConfig {
-    applicationId "com.sabih.consciousmedia"
-    minSdkVersion 23  // ← Böyle olacak!
-    targetSdkVersion 34
-    versionCode 1
-    versionName "1.0"
-}
+    defaultConfig {
+        applicationId = "com.sabih.consciousmedia"
+        minSdk = 23
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
+    }
 
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
 
@@ -33,9 +30,6 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-
-    // ✅ NDK versiyonunu ekliyoruz
-    ndkVersion = "27.0.12077973"
 }
 
 dependencies {

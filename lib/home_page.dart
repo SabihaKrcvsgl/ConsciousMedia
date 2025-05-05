@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'ConsciousMedia',
+                        'Sabiha_K',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,

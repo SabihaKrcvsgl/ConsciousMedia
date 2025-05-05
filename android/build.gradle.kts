@@ -1,36 +1,41 @@
-pluginManagement {
-    repositories {
-        google()
-        gradlePluginPortal()
-        mavenCentral()
-    }
-}
-
 plugins {
-    id("com.android.application") version "8.3.1" apply false
-    id("org.jetbrains.kotlin.android") version "1.9.23" apply false
-    id("com.google.gms.google-services") version "4.4.0" apply false // 🔧 BU SATIR ÖNEMLİ
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
+android {
+    namespace = "com.sabih.consciousmedia"
+    compileSdk = 34
+
+    defaultConfig {
+        applicationId = "com.sabih.consciousmedia"
+        minSdkVersion(23)
+        targetSdkVersion(34)
+        versionCode = 1
+        versionName = "1.0"
     }
+
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    ndkVersion = "27.0.12077973"
 }
 
-val newBuildDir: Directory = rootProject.layout.buildDirectory.dir("../../build").get()
-rootProject.layout.buildDirectory.value(newBuildDir)
-
-subprojects {
-    val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
-    project.layout.buildDirectory.value(newSubprojectBuildDir)
-}
-
-subprojects {
-    project.evaluationDependsOn(":app")
-}
-
-tasks.register<Delete>("clean") {
-    delete(rootProject.layout.buildDirectory)
+dependencies {
+    implementation("androidx.core:core-ktx:1.13.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    implementation("androidx.activity:activity-compose:1.9.0")
 }
