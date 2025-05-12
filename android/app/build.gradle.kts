@@ -1,39 +1,56 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    id("kotlin-android")
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id("dev.flutter.flutter-gradle-plugin")
 }
 
 android {
-    namespace = "com.sabih.consciousmedia"
-    compileSdk = 34
+    // NDK sürümünü manuel olarak belirtiyoruz.
+    ndkVersion = "27.0.12077973"  // Firebase ile uyumlu NDK sürümü
 
-    defaultConfig {
-        applicationId = "com.sabih.consciousmedia"
-        minSdk = 23
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
-    }
+    // Proje ad alanı
+    namespace = "com.example.consciousmedia"
 
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
-    }
+    // Flutter tarafından sağlanan compileSdkVersion'ı kullanıyoruz
+    compileSdk = flutter.compileSdkVersion
 
+    // Java ve Kotlin uyumluluk seçenekleri
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = JavaVersion.VERSION_11.toString()
+    }
+
+    // Default config ayarları
+    defaultConfig {
+        // Uygulama ID'si
+        applicationId = "com.example.consciousmedia"
+
+        // Minimum SDK sürümünü 23 olarak belirliyoruz
+        minSdk = 23  // flutter.minSdkVersion yerine doğrudan 23 kullanıyoruz
+
+        // Hedef SDK sürümünü Flutter'ın sağladığı versiyonla ayarlıyoruz
+        targetSdk = flutter.targetSdkVersion
+
+        // Uygulama sürüm bilgileri
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    // Yayınlama için gerekli yapılandırmalar
+    buildTypes {
+        release {
+            // Debug anahtarlarıyla imzalama yapılıyor, üretim için kendi anahtarınızı eklemelisiniz
+            signingConfig = signingConfigs.getByName("debug")
+        }
     }
 }
 
-dependencies {
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-    implementation("androidx.activity:activity-compose:1.9.0")
+flutter {
+    // Flutter kaynak yolunu belirtiyoruz
+    source = "../.."
 }

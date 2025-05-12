@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'useful_content_page.dart';
+import 'time_management_tips_page.dart'; // Lib altında
 
 class HomePage extends StatelessWidget {
   @override
@@ -118,10 +120,11 @@ class HomePage extends StatelessWidget {
                   leading: Icon(Icons.access_time, color: Color(0xFFB45F04)),
                   title: Text('Zaman Yönetimi'),
                   onTap: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Zaman yönetimi sayfası açılacak'),
-                      ),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => TimeManagementTipsPage(),
+                      ), // Burada zaman yönetimi sayfasına geçiş yapılıyor
                     );
                   },
                 ),
@@ -141,13 +144,16 @@ class HomePage extends StatelessWidget {
                     backgroundColor: Color(0xFF76A47F),
                   ),
                   onTap: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Faydalı içerik gösterilecek')),
+                    // 👇 Bu kısmı değiştireceksin
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UsefulContentPage(),
+                      ),
                     );
                   },
                 ),
               ),
-              SizedBox(height: 5),
 
               // Zararlı İçerik kartı
               _buildColoredCard(
