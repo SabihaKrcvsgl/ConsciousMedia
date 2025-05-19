@@ -1,41 +1,36 @@
-name: consciousmedia
+name: conscious_media
 description: "A new Flutter project."
-publish_to: 'none' # pub.dev'e yayınlamak istemiyorsanız bu satırı koruyun.
+publish_to: 'none'
 
 version: 1.0.0+1
 
 environment:
-  # Dart SDK sürümünü güncel Flutter sürümleriyle uyumlu bir aralığa güncelledik.
-  # Flutter sürümünüze göre bu aralığı daraltabilir veya genişletebilirsiniz.
-  # Örneğin, Flutter 3.22.x, Dart 3.4.x kullanır.
-  sdk: '>=3.4.0 <4.0.0'
+  sdk: '>=3.0.0 <4.0.0' # Dart SDK versiyonu
 
 dependencies:
   flutter:
     sdk: flutter
+  http: ^1.1.0
 
-  # Firebase bağımlılıklarınız. Hata mesajlarına göre Kotlin sorunu bunlarla ilgiliydi.
-  # Gradle güncellemeleri bu sorunu çözmeli. Eğer bu sürümlerle ilgili
-  # 'flutter pub get' hatası alırsanız, güncel kararlı sürümleri kontrol edin.
-  firebase_core: ^3.13.0 # Bu sürüm standart FlutterFire sürümlerinden farklı görünüyor.
-  firebase_auth: ^5.5.2 # Bu sürüm standart FlutterFire sürümlerinden farklı görünüyor.
+  # Firebase
+  firebase_core: ^3.13.0        # Bir önceki hata mesajına göre güncellendi
+  firebase_auth: ^5.5.3         # Bir önceki hata mesajındaki versiyon
+  firebase_remote_config: ^5.0.0 # UZAKTAN YAPILANDIRMA İÇİN GEREKLİ (veya en son sürüm)
+  # cloud_firestore: ^5.0.2     # Eğer Firestore kullanıyorsanız bu satırın yorumunu kaldırın
 
-  cupertino_icons: ^1.0.8
+  # UI & Icons
+  cupertino_icons: ^1.0.2
+  # font_awesome_flutter: ^10.1.0 # Eğer kullanıyorsanız bu satırın yorumunu kaldırın
+  # fl_chart: ^0.40.0             # Eğer kullanıyorsanız bu satırın yorumunu kaldırın
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  # flutter_lints sürümünü güncelledik.
-  flutter_lints: ^4.0.0 # Veya projenize uygun en son kararlı sürüm.
+  flutter_lints: ^2.0.0
 
 flutter:
   uses-material-design: true
   # assets, fonts vb. ayarlarınız buraya gelebilir.
   # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  #   - assets/images/ # Eğer assets klasörünüz varsa bu şekilde tanımlayın

@@ -1,25 +1,32 @@
 import 'package:flutter/material.dart';
-import 'useful_content_page.dart';
-import 'time_management_tips_page.dart'; // Lib altında
+import 'recommended_content_page.dart'; // Yeni sayfamızın importu
+import 'useful_content_page.dart'; // Bu hala kullanılıyor mu? Eğer RecommendedContentPage bunun yerini alıyorsa kaldırılabilir.
+import 'time_management_tips_page.dart';
+
+// Eğer FeaturesPage bu dosyada tanımlı değilse ve ayrı bir dosyadaysa, onu da import etmeniz gerekir.
+// Örnek: import 'features_page.dart';
 
 class HomePage extends StatelessWidget {
+  HomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF76A47F),
         title: Text('ConsciousMedia', style: TextStyle(color: Colors.white)),
+        automaticallyImplyLeading: false,
         actions: [
           TextButton(
             onPressed: () {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text('Zaten anasayfadasın!')));
+              ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Şu anda anasayfadasınız.')));
             },
             child: Text('Anasayfa', style: TextStyle(color: Colors.white)),
           ),
           TextButton(
             onPressed: () {
+              // FeaturesPage'in bu dosyada veya doğru şekilde import edildiğinden emin olun
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => FeaturesPage()),
@@ -27,18 +34,22 @@ class HomePage extends StatelessWidget {
             },
             child: Text('Özellikler', style: TextStyle(color: Colors.white)),
           ),
+          // Çıkış Yap butonu için yer tutucu
+          /*
           TextButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
+              // Gerçek Firebase Auth eklendiğinde burası doldurulacak
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Çıkış yapma işlevi eklenecek.')),
               );
             },
-            child: Text('Giriş Yap', style: TextStyle(color: Colors.white)),
+            child: Text('Çıkış Yap', style: TextStyle(color: Colors.white)),
           ),
+          */
         ],
       ),
-      backgroundColor: Color.fromARGB(255, 239, 216, 197),
+      backgroundColor:
+          Color.fromARGB(255, 249, 231, 218), // Arka plan rengi güncellendi
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
@@ -58,7 +69,7 @@ class HomePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Sabiha_K',
+                        'Sabiha_K', // Dinamik olacak
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -66,7 +77,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Hoş geldin, Sabiha!',
+                        'Hoş geldin, Sabiha!', // Dinamik olacak
                         style: TextStyle(
                           fontSize: 18,
                           color: Color(0xFF3D6B4E),
@@ -83,7 +94,7 @@ class HomePage extends StatelessWidget {
                 child: Text(
                   'Bugün daha bilinçli bir gün!',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 20, // Font boyutu güncellendi
                     fontWeight: FontWeight.bold,
                     color: Color(0xFFB45F04),
                   ),
@@ -95,13 +106,13 @@ class HomePage extends StatelessWidget {
               _buildCard(
                 child: ListTile(
                   leading: CircularProgressIndicator(
-                    value: 0.5,
+                    value: 0.5, // Dinamik olacak
                     backgroundColor: Colors.grey.shade300,
                     valueColor: AlwaysStoppedAnimation<Color>(
                       Color(0xFF76A47F),
                     ),
                   ),
-                  title: Text('Bugün 1s 25d'),
+                  title: Text('Bugün 1s 25dk'), // Dinamik olacak
                   trailing: Icon(Icons.arrow_forward_ios),
                   onTap: () {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -124,36 +135,35 @@ class HomePage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => TimeManagementTipsPage(),
-                      ), // Burada zaman yönetimi sayfasına geçiş yapılıyor
+                      ),
                     );
                   },
                 ),
               ),
               SizedBox(height: 5),
 
-              // Faydalı İçerik kartı
+              // ===== DEĞİŞİKLİK BURADA BAŞLIYOR =====
+              // Önerilen İçerikler kartı (Eski Faydalı İçerik kartının yerine)
               _buildCard(
                 child: ListTile(
                   leading: Icon(
-                    Icons.menu_book,
-                    color: Color.fromARGB(255, 210, 223, 215),
+                    Icons.auto_awesome_outlined, // Yeni ikon
+                    color: Color(0xFF76A47F),
                   ),
-                  title: Text('Faydalı İçerik Önerisi'),
-                  trailing: Chip(
-                    label: Text('Açık', style: TextStyle(color: Colors.white)),
-                    backgroundColor: Color(0xFF76A47F),
-                  ),
+                  title: Text('Önerilen İçerikler'), // Yeni başlık
+                  // trailing: Chip(...) // Trailing kaldırıldı
                   onTap: () {
-                    // 👇 Bu kısmı değiştireceksin
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => UsefulContentPage(),
+                        builder: (context) =>
+                            RecommendedContentPage(), // YENİ SAYFAYA YÖNLENDİRME
                       ),
                     );
                   },
                 ),
               ),
+              // ===== DEĞİŞİKLİK BURADA BİTİYOR =====
 
               // Zararlı İçerik kartı
               _buildColoredCard(
@@ -200,9 +210,9 @@ class HomePage extends StatelessWidget {
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: Offset(0, 3),
+                      spreadRadius: 2,
+                      blurRadius: 5,
+                      offset: Offset(0, 2),
                     ),
                   ],
                 ),
@@ -235,16 +245,16 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // Ortak Card
   Widget _buildCard({required Widget child}) {
     return Card(
       color: Color(0xFFE6F2E6),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      elevation: 2,
+      margin: EdgeInsets.symmetric(vertical: 4),
       child: child,
     );
   }
 
-  // Renkli Card
   Widget _buildColoredCard({
     required String title,
     required IconData icon,
@@ -253,24 +263,21 @@ class HomePage extends StatelessWidget {
     return Card(
       color: Color(0xFF76A47F),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      elevation: 2,
+      margin: EdgeInsets.symmetric(vertical: 4),
       child: ListTile(
         leading: Icon(icon, color: Colors.white),
-        title: Text(title, style: TextStyle(color: Colors.white)),
+        title: Text(title,
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500)),
         onTap: onTap,
       ),
     );
   }
 
-  // Sosyal Medya Barı
   Widget _buildSocialMediaBar(String platform, double value, Color color) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Text(
-          platform,
-          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(height: 8),
         Container(
           width: 20,
           height: 100,
@@ -290,19 +297,27 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 8),
-        Text('${(value * 100).toInt()}%'),
+        SizedBox(height: 4),
+        Text(
+          platform,
+          style: TextStyle(fontSize: 11, fontWeight: FontWeight.w500),
+        ),
       ],
     );
   }
 }
 
-// Özellikler sayfası
+// Özellikler sayfası (FeaturesPage)
+// Bu sınıfın tanımı burada kalabilir veya ayrı bir dosyaya (features_page.dart) taşınabilir.
+// Eğer ayrı bir dosyaya taşırsanız, HomePage'de en üste import 'features_page.dart'; eklemeyi unutmayın.
 class FeaturesPage extends StatelessWidget {
+  FeaturesPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFEFD8C5),
+      backgroundColor:
+          Color.fromARGB(255, 253, 234, 218), // Arka plan rengi güncellendi
       appBar: AppBar(
         backgroundColor: Color(0xFF76A47F),
         title: Text('Özellikler', style: TextStyle(color: Colors.white)),
@@ -319,47 +334,51 @@ class FeaturesPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF3D6B4E),
                 ),
+                textAlign: TextAlign.center,
               ),
               SizedBox(height: 20),
               _buildFeatureTile(
                 icon: Icons.access_time,
                 title: 'Zaman Yönetimi',
                 description:
-                    'Sosyal medya kullanım süreni takip et ve sınırla.',
+                    'Sosyal medya kullanım sürenizi takip edin ve bilinçli sınırlar belirleyin.',
               ),
               _buildFeatureTile(
-                icon: Icons.filter_alt,
+                icon: Icons.filter_alt_off,
                 title: 'Zararlı İçerik Filtreleme',
-                description: 'Zararlı ve olumsuz içerikleri otomatik filtrele.',
+                description:
+                    'İstenmeyen ve olumsuz içerikleri otomatik olarak filtreleyin.',
               ),
               _buildFeatureTile(
-                icon: Icons.menu_book,
+                icon: Icons.lightbulb_outline,
                 title: 'Faydalı İçerik Önerileri',
                 description:
-                    'Sana özel eğitici ve ilham verici içerikler sunar.',
+                    'Kişisel gelişiminize katkıda bulunacak eğitici ve ilham verici içerikler keşfedin.',
               ),
               _buildFeatureTile(
-                icon: Icons.shield,
+                icon: Icons.family_restroom,
                 title: 'Ebeveyn Kontrolü',
                 description:
-                    'Çocuklar için güvenli sosyal medya deneyimi sağlar.',
+                    'Çocuklarınız için güvenli ve yaşlarına uygun bir sosyal medya deneyimi sağlayın.',
               ),
               _buildFeatureTile(
-                icon: Icons.bar_chart,
+                icon: Icons.analytics_outlined,
                 title: 'Kullanım Analizleri',
-                description: 'Detaylı sosyal medya kullanım raporları al.',
+                description:
+                    'Sosyal medya alışkanlıklarınızı detaylı raporlarla analiz edin.',
               ),
               _buildFeatureTile(
-                icon: Icons.notifications_active,
+                icon: Icons.notifications_paused_outlined,
                 title: 'Bilinçli Kullanım Bildirimleri',
                 description:
-                    'Uzun süre kullanımda hatırlatma bildirimleri gönderir.',
+                    'Uzun süreli kullanımlarda mola vermeniz için nazik hatırlatıcılar alın.',
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 30),
               Center(
                 child: Text(
                   '© 2025 ConsciousMedia',
-                  style: TextStyle(color: Colors.grey, fontSize: 12),
+                  style: TextStyle(
+                      color: Color(0xFF3D6B4E).withOpacity(0.7), fontSize: 12),
                 ),
               ),
             ],
@@ -369,7 +388,6 @@ class FeaturesPage extends StatelessWidget {
     );
   }
 
-  // Özellik kutucuğu
   Widget _buildFeatureTile({
     required IconData icon,
     required String title,
@@ -378,127 +396,40 @@ class FeaturesPage extends StatelessWidget {
     return Card(
       color: Color(0xFFE6F2E6),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      margin: EdgeInsets.symmetric(vertical: 10),
-      child: ListTile(
-        leading: Icon(icon, color: Color(0xFF76A47F), size: 30),
-        title: Text(
-          title,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Color(0xFF3D6B4E),
-          ),
-        ),
-        subtitle: Text(description, style: TextStyle(color: Color(0xFF3D6B4E))),
-      ),
-    );
-  }
-}
-
-// Giriş Yap sayfası
-class LoginPage extends StatelessWidget {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFFEFD8C5),
-      appBar: AppBar(
-        backgroundColor: Color(0xFF76A47F),
-        title: Text('Giriş Yap', style: TextStyle(color: Colors.white)),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Tekrar Hoş Geldin!',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF3D6B4E),
-                ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                'Lütfen giriş yap:',
-                style: TextStyle(fontSize: 16, color: Color(0xFF3D6B4E)),
-              ),
-              SizedBox(height: 30),
-
-              // Email TextField
-              TextField(
-                controller: emailController,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  labelText: 'E-posta',
-                  labelStyle: TextStyle(color: Color(0xFF3D6B4E)),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  prefixIcon: Icon(Icons.email, color: Color(0xFF76A47F)),
-                ),
-              ),
-              SizedBox(height: 20),
-
-              // Password TextField
-              TextField(
-                controller: passwordController,
-                obscureText: true,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  labelText: 'Şifre',
-                  labelStyle: TextStyle(color: Color(0xFF3D6B4E)),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  prefixIcon: Icon(Icons.lock, color: Color(0xFF76A47F)),
-                ),
-              ),
-              SizedBox(height: 30),
-
-              // Giriş Yap Butonu
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF76A47F),
-                    padding: EdgeInsets.symmetric(vertical: 15),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
+      margin: EdgeInsets.symmetric(vertical: 8),
+      elevation: 2,
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(icon, color: Color(0xFF76A47F), size: 36),
+            SizedBox(width: 15),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF3D6B4E),
                     ),
                   ),
-                  onPressed: () {
-                    String email = emailController.text;
-                    String password = passwordController.text;
-
-                    if (email.isNotEmpty && password.isNotEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Giriş yapılıyor...')),
-                      );
-                      // Burada giriş işlemi yapılacak
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Lütfen tüm alanları doldurun.'),
-                        ),
-                      );
-                    }
-                  },
-                  child: Text(
-                    'Giriş Yap',
-                    style: TextStyle(fontSize: 16, color: Colors.white),
-                  ),
-                ),
+                  SizedBox(height: 4),
+                  Text(description,
+                      style: TextStyle(
+                          color: Color(0xFF3D6B4E).withOpacity(0.9),
+                          fontSize: 13)),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
+
+// BU DOSYADAN LoginPage TANIMI SİLİNMİŞTİR.

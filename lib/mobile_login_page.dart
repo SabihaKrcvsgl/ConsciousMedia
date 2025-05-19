@@ -50,7 +50,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 250, 233, 219),
+      backgroundColor: Color(0xFFEFD8C5),
       appBar: AppBar(
         backgroundColor: Color(0xFF76A47F),
         title: Text('Giriş Yap', style: TextStyle(color: Colors.white)),

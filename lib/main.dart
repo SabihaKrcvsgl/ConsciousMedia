@@ -1,7 +1,14 @@
+// lib/main.dart
 import 'package:flutter/material.dart';
-import 'login_page.dart'; // Eğer LoginPage başka bir dosyadaysa burayı düzenle
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'auth_wrapper.dart'; // YENİ AUTHWRAPPER'I İMPORT EDİN
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 
@@ -10,9 +17,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Giriş Uygulaması',
+      title: 'Conscious Media',
       theme: ThemeData(primarySwatch: Colors.green),
-      home: LoginPage(), // İlk açılacak ekran
+      home: AuthWrapper(), // DEĞİŞİKLİK BURADA!
     );
   }
 }

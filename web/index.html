@@ -1,59 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> <!-- lang="en" olarak değiştirdim, genellikle daha standarttır -->
 
 <head>
-  <!-- Firebase SDK -->
-  <script type="module">
-    // Firebase SDK'ları ve konfigürasyonu
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
-    import { getAuth } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-    import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
-
-    // Firebase yapılandırması
-    const firebaseConfig = {
-      apiKey: "AIzaSyAJ1AxM_zTBbPXGkQd8rHw2_p_Ku78eha0",  // Firebase projenize ait API key
-      authDomain: "consciousmedia-852f0.firebaseapp.com",  // Firebase projenize ait domain
-      projectId: "Conscious-Media-852F0",  // Firebase projenizin ID'si
-      storageBucket: "consciousmedia-852f0.firebasestorage.app",  // Firebase depolama alanı
-      messagingSenderId: "113505219981",  // Firebase mesajlaşma sender ID
-      appId: "1:113505219981:web:d62903eCE5730E2113F9C4",  // Firebase uygulama ID'si
-      measurementId: "G-JJB9GNHBC0",  // Firebase Analytics ID'si
-    };
-
-    // Firebase uygulamasını başlat
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const auth = getAuth(app);
-    const firestore = getFirestore(app);
-
-    // Kullanıcı girişi işlevi
-    const login = async (email, password) => {
-      try {
-        const userCredential = await auth.signInWithEmailAndPassword(email, password);
-        console.log("Giriş başarılı:", userCredential.user);
-      } catch (error) {
-        console.error("Giriş hatası:", error.message);
-      }
-    };
-
-    // Firestore'a veri ekleme işlevi
-    const addUserData = async (userData) => {
-      try {
-        const docRef = await firestore.collection('users').add(userData);
-        console.log("Veri eklendi:", docRef.id);
-      } catch (error) {
-        console.error("Veri ekleme hatası:", error.message);
-      }
-    };
-  </script>
+  <!--
+    MANUEL FIREBASE SDK BAŞLATMA KODLARI BURADAN TAMAMEN KALDIRILDI.
+    FlutterFire, firebase_options.dart dosyasını kullanarak bunu otomatik yapacaktır.
+  -->
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="A new Flutter project.">
 
   <!-- iOS meta tags & icons -->
-  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="conscious_media">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">

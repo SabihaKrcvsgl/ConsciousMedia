@@ -1,21 +1,40 @@
 {
   "project_info": {
-    "project_number": "113505219981",
-    "project_id": "consciousmedia-852f0",
-    "storage_bucket": "consciousmedia-852f0.firebasestorage.app"
+    "project_number": "879823004120",
+    "project_id": "consciousmedia-fc7ca",
+    "storage_bucket": "consciousmedia-fc7ca.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:113505219981:android:4e1e29757c55bba313f9c4",
+        "mobilesdk_app_id": "1:879823004120:android:9eb38473c2b9346bdb52ad",
         "android_client_info": {
-          "package_name": "com.sabih.consciousmedia"
+          "package_name": "com.companyname.appname"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCMRmSSlw7Xqp-r3dZEdR7rA2is471D5CE"
+          "current_key": "AIzaSyDuRhEbtCgtRPXDIXCYatn9cYEztbWdU24"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879823004120:android:3ae265f5c1cc7de3db52ad",
+        "android_client_info": {
+          "package_name": "com.example.consciousmedia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuRhEbtCgtRPXDIXCYatn9cYEztbWdU24"
         }
       ],
       "services": {
